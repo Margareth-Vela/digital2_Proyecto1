@@ -2689,9 +2689,9 @@ void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
 # 19 "master_main.c" 2
 # 29 "master_main.c"
-uint8_t Primer_digito;
-uint8_t Segundo_digito;
-uint8_t Tercer_digito;
+uint8_t Primer_digito = 0;
+uint8_t Segundo_digito = 0;
+uint8_t Tercer_digito = 0;
 
 
 
@@ -2735,24 +2735,26 @@ void Decimal(uint8_t variable);
 
 void main(void) {
     setup();
+    Lcd_Init();
     while(1){
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String("S1:");
+        Lcd_Write_String("  ");
+        Lcd_Write_String("S2:");
 
-        Decimal(255);
         Lcd_Set_Cursor(2,1);
+        Decimal(255);
         Lcd_Write_Char(Primer_digito);
-        Lcd_Set_Cursor(2,2);
         Lcd_Write_Char(Segundo_digito);
-        Lcd_Set_Cursor(2,3);
         Lcd_Write_Char(Tercer_digito);
-
-
+        Lcd_Write_String("  ");
         Decimal(40);
-        Lcd_Set_Cursor(2,7);
         Lcd_Write_Char(Primer_digito);
-        Lcd_Set_Cursor(2,8);
         Lcd_Write_Char(Segundo_digito);
-        Lcd_Set_Cursor(2,9);
         Lcd_Write_Char(Tercer_digito);
+        _delay((unsigned long)((2000)*(8000000/4000.0)));
+
     }
     return;
 }
@@ -2775,25 +2777,12 @@ void Decimal(uint8_t variable){
     valor = (valor - (Primer_digito*100));
     Segundo_digito = (valor/10);
     valor = (valor - (Segundo_digito*10));
-    Tercer_digito = (valor);
+    Tercer_digito = valor;
 
     Primer_digito = Primer_digito + 48;
     Segundo_digito = Segundo_digito + 48;
     Tercer_digito = Tercer_digito + 48;
 
-}
-
-void LCD_display(){
-
-    Lcd_Set_Cursor(1,3);
-    Lcd_Write_String("S1");
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String("000");
-    Lcd_Set_Cursor(1,8);
-    Lcd_Write_String("S2");
-    Lcd_Set_Cursor(2,7);
-    Lcd_Write_String("000");
-    return;
 }
 
 
@@ -2823,12 +2812,4 @@ void setup(void){
     PORTE = 0x00;
 
 
-    Lcd_Init();
-    Lcd_Clear();
-    Lcd_Set_Cursor(1,1);
-
-
-    LCD_display();
-
-    I2C_Master_Init(100000);
 }

@@ -26,9 +26,9 @@
 //------------------------------------------------------------------------------
 //                          Variables
 //------------------------------------------------------------------------------
-uint8_t Primer_digito; //Para conversion a decimal
-uint8_t Segundo_digito;
-uint8_t Tercer_digito;
+uint8_t Primer_digito = 0; //Para conversion a decimal
+uint8_t Segundo_digito = 0;
+uint8_t Tercer_digito = 0;
 
 //------------------------------------------------------------------------------
 //                          Palabras de configuración
@@ -72,24 +72,26 @@ void Decimal(uint8_t variable); //Conversion a decimal
 //------------------------------------------------------------------------------
 void main(void) {
     setup(); 
-    while(1){
-        // Display para Sensor 1
-        Decimal(255);             //Conversion a decimal del primer sensor
-        Lcd_Set_Cursor(2,1);
-        Lcd_Write_Char(Primer_digito);
-        Lcd_Set_Cursor(2,2);
-        Lcd_Write_Char(Segundo_digito);
-        Lcd_Set_Cursor(2,3);
-        Lcd_Write_Char(Tercer_digito);
+    Lcd_Init();
+    while(1){    
+        Lcd_Clear();
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String("S1:");
+        Lcd_Write_String("  ");
+        Lcd_Write_String("S2:");
         
-         //Display para Sensor 2
-        Decimal(40);                  //Conversion a decimal del segundo sensor
-        Lcd_Set_Cursor(2,7);
+        Lcd_Set_Cursor(2,1);
+        Decimal(255);
         Lcd_Write_Char(Primer_digito);
-        Lcd_Set_Cursor(2,8);
         Lcd_Write_Char(Segundo_digito);
-        Lcd_Set_Cursor(2,9);
         Lcd_Write_Char(Tercer_digito);
+        Lcd_Write_String("  ");
+        Decimal(40);
+        Lcd_Write_Char(Primer_digito);
+        Lcd_Write_Char(Segundo_digito);
+        Lcd_Write_Char(Tercer_digito);
+        __delay_ms(2000);
+
     }
     return;
 }
@@ -112,25 +114,12 @@ void Decimal(uint8_t variable){        // Función para obtener valor decimal
     valor = (valor - (Primer_digito*100));
     Segundo_digito = (valor/10);              //Valor del segundo digito
     valor = (valor - (Segundo_digito*10));
-    Tercer_digito = (valor);                //Valor del primer digito
+    Tercer_digito = valor;                //Valor del primer digito
     
     Primer_digito = Primer_digito + 48;          //Conversion a ascii
     Segundo_digito = Segundo_digito + 48;
     Tercer_digito = Tercer_digito + 48;
     
-}
-
-void LCD_display(){
-    //Muestra los valores iniciales de la pantalla LCD
-    Lcd_Set_Cursor(1,3);
-    Lcd_Write_String("S1");
-    Lcd_Set_Cursor(2,1);
-    Lcd_Write_String("000");
-    Lcd_Set_Cursor(1,8);
-    Lcd_Write_String("S2");
-    Lcd_Set_Cursor(2,7);
-    Lcd_Write_String("000");
-    return;
 }
 
 //------------------------------------------------------------------------------
@@ -158,15 +147,7 @@ void setup(void){
     PORTC = 0x00;    
     PORTD = 0x00;
     PORTE = 0x00;
-              
-    // Inicializar LCD
-    Lcd_Init();
-    Lcd_Clear();  //Limpiar LCD
-    Lcd_Set_Cursor(1,1); //Cursor en fila uno primera posicion 
-    
-    //desplegar texto en pantalla
-    LCD_display();
-    
-    I2C_Master_Init(100000); // Se inicializa la frecuencia del master a 100kHz
+        
+   // I2C_Master_Init(100000); // Se inicializa la frecuencia del master a 100kHz
 }
 
