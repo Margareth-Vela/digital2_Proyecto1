@@ -30,6 +30,12 @@ uint8_t Primer_digito = 0; //Para conversion a decimal
 uint8_t Segundo_digito = 0;
 uint8_t Tercer_digito = 0;
 
+uint8_t slave1;
+uint8_t slave2;
+uint8_t sensor1;
+uint8_t sensor2;
+uint8_t sensor3;
+
 //------------------------------------------------------------------------------
 //                          Palabras de configuración
 //------------------------------------------------------------------------------
@@ -73,20 +79,66 @@ void Decimal(uint8_t variable); //Conversion a decimal
 void main(void) {
     setup(); 
     Lcd_Init();
-    while(1){    
+    while(1){  
+        /*
+          I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x71);     //Direccion de lectura del primer esclavo
+        slave1 = I2C_Master_Read(0); //Se agrega el valor del potenciometro
+        I2C_Master_Stop();          //Termina la comunicacion 
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x81);     //Direccion de lectura del segundo esclavo
+        slave2 = I2C_Master_Read(0); //Se agrega el valor del contador
+        I2C_Master_Stop();          //Termina la comunicacion 
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xEE);     //Configuracion del sensor
+        I2C_Master_Stop();          //Termina la comunicacion 
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xAA);     //Lee el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x91);     //Direccion de lectura del sensor I2C
+        val_temp = I2C_Master_Read(0); //Se agrega el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        */
+        
         Lcd_Clear();
         Lcd_Set_Cursor(1,1);
         Lcd_Write_String("S1:");
-        Lcd_Write_String("  ");
+        Lcd_Write_String(" ");
         Lcd_Write_String("S2:");
+        Lcd_Write_String(" ");
+        Lcd_Write_String("OP1");
+        Lcd_Write_String(" ");
+        Lcd_Write_String("OP2");
         
         Lcd_Set_Cursor(2,1);
         Decimal(255);
         Lcd_Write_Char(Primer_digito);
         Lcd_Write_Char(Segundo_digito);
         Lcd_Write_Char(Tercer_digito);
-        Lcd_Write_String("  ");
+        Lcd_Write_String(" ");
         Decimal(40);
+        Lcd_Write_Char(Primer_digito);
+        Lcd_Write_Char(Segundo_digito);
+        Lcd_Write_Char(Tercer_digito);
+        Lcd_Write_String(" ");
+        Decimal(80);
+        Lcd_Write_Char(Primer_digito);
+        Lcd_Write_Char(Segundo_digito);
+        Lcd_Write_Char(Tercer_digito);
+        Lcd_Write_String(" ");
+        Decimal(10);
         Lcd_Write_Char(Primer_digito);
         Lcd_Write_Char(Segundo_digito);
         Lcd_Write_Char(Tercer_digito);
@@ -138,7 +190,7 @@ void setup(void){
     
     TRISA = 0x00; //Salidas
     TRISB = 0x00;
-    TRISC = 0x00; 
+    TRISC = 0x80; 
     TRISD = 0x00; 
     TRISE = 0x00; 
     

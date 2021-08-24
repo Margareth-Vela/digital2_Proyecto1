@@ -2693,6 +2693,12 @@ uint8_t Primer_digito = 0;
 uint8_t Segundo_digito = 0;
 uint8_t Tercer_digito = 0;
 
+uint8_t slave1;
+uint8_t slave2;
+uint8_t sensor1;
+uint8_t sensor2;
+uint8_t sensor3;
+
 
 
 
@@ -2737,19 +2743,34 @@ void main(void) {
     setup();
     Lcd_Init();
     while(1){
+# 115 "master_main.c"
         Lcd_Clear();
         Lcd_Set_Cursor(1,1);
         Lcd_Write_String("S1:");
-        Lcd_Write_String("  ");
+        Lcd_Write_String(" ");
         Lcd_Write_String("S2:");
+        Lcd_Write_String(" ");
+        Lcd_Write_String("OP1");
+        Lcd_Write_String(" ");
+        Lcd_Write_String("OP2");
 
         Lcd_Set_Cursor(2,1);
         Decimal(255);
         Lcd_Write_Char(Primer_digito);
         Lcd_Write_Char(Segundo_digito);
         Lcd_Write_Char(Tercer_digito);
-        Lcd_Write_String("  ");
+        Lcd_Write_String(" ");
         Decimal(40);
+        Lcd_Write_Char(Primer_digito);
+        Lcd_Write_Char(Segundo_digito);
+        Lcd_Write_Char(Tercer_digito);
+        Lcd_Write_String(" ");
+        Decimal(80);
+        Lcd_Write_Char(Primer_digito);
+        Lcd_Write_Char(Segundo_digito);
+        Lcd_Write_Char(Tercer_digito);
+        Lcd_Write_String(" ");
+        Decimal(10);
         Lcd_Write_Char(Primer_digito);
         Lcd_Write_Char(Segundo_digito);
         Lcd_Write_Char(Tercer_digito);
@@ -2801,7 +2822,7 @@ void setup(void){
 
     TRISA = 0x00;
     TRISB = 0x00;
-    TRISC = 0x00;
+    TRISC = 0x80;
     TRISD = 0x00;
     TRISE = 0x00;
 

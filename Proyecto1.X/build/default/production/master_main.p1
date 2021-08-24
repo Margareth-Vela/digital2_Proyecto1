@@ -1,7 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"67 master_main.c
-[; ;master_main.c: 67:     OSCCONbits.IRCF2 = 1;
+"73 master_main.c
 [v _setup `(v ~T0 @X0 0 ef ]
 "72 ./LCD.h
 [; ;./LCD.h: 72: void Lcd_Init(void);
@@ -15,8 +14,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "76
 [; ;./LCD.h: 76: void Lcd_Write_String(char *a);
 [v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
-"68 master_main.c
-[; ;master_main.c: 68:     OSCCONbits.IRCF1 = 1;
+"74 master_main.c
 [v _Decimal `(v ~T0 @X0 0 ef1`uc ]
 "74 ./LCD.h
 [; ;./LCD.h: 74: void Lcd_Write_Char(char a);
@@ -329,215 +327,300 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" EECON2 equ 018Dh ;# ">
 "29 master_main.c
 [; ;master_main.c: 29: uint8_t Primer_digito = 0;
-[; ;master_main.c: 29:         Lcd_Write_Char(Tercer_digito);
 [v _Primer_digito `uc ~T0 @X0 1 e ]
 [i _Primer_digito
 -> -> 0 `i `uc
 ]
 "30
 [; ;master_main.c: 30: uint8_t Segundo_digito = 0;
-[; ;master_main.c: 30:         _delay((unsigned long)((2000)*(8000000/4000.0)));
 [v _Segundo_digito `uc ~T0 @X0 1 e ]
 [i _Segundo_digito
 -> -> 0 `i `uc
 ]
 "31
 [; ;master_main.c: 31: uint8_t Tercer_digito = 0;
-[; ;master_main.c: 31: 
 [v _Tercer_digito `uc ~T0 @X0 1 e ]
 [i _Tercer_digito
 -> -> 0 `i `uc
 ]
+"33
+[; ;master_main.c: 33: uint8_t slave1;
+[v _slave1 `uc ~T0 @X0 1 e ]
+"34
+[; ;master_main.c: 34: uint8_t slave2;
+[v _slave2 `uc ~T0 @X0 1 e ]
+"35
+[; ;master_main.c: 35: uint8_t sensor1;
+[v _sensor1 `uc ~T0 @X0 1 e ]
+"36
+[; ;master_main.c: 36: uint8_t sensor2;
+[v _sensor2 `uc ~T0 @X0 1 e ]
 "37
-[; ;master_main.c: 37: 
-[p x FOSC  =  INTRC_NOCLKOUT ]
-"40
-[; ;master_main.c: 40:     (INTCONbits.GIE = 0);
-[p x WDTE  =  OFF  ]
-"42
-[; ;master_main.c: 42: }
-[p x PWRTE  =  OFF        ]
+[; ;master_main.c: 37: uint8_t sensor3;
+[v _sensor3 `uc ~T0 @X0 1 e ]
 "43
-[; ;master_main.c: 43: 
-[p x MCLRE  =  OFF       ]
+[p x FOSC  =  INTRC_NOCLKOUT ]
 "46
-[; ;master_main.c: 46: 
-[p x CP  =  OFF          ]
+[p x WDTE  =  OFF  ]
 "48
-[; ;master_main.c: 48:     uint8_t valor;
+[p x PWRTE  =  OFF        ]
+"49
+[p x MCLRE  =  OFF       ]
+"52
+[p x CP  =  OFF          ]
+"54
 [p x CPD  =  OFF         ]
-"50
-[; ;master_main.c: 50:     Primer_digito = (valor/100) ;
+"56
 [p x BOREN  =  OFF       ]
-"51
-[; ;master_main.c: 51:     valor = (valor - (Primer_digito*100));
+"57
 [p x IESO  =  OFF        ]
-"53
-[; ;master_main.c: 53:     valor = (valor - (Segundo_digito*10));
-[p x FCMEN  =  OFF       ]
-"55
-[; ;master_main.c: 55: 
-[p x LVP  =  OFF          ]
 "59
-[; ;master_main.c: 59: 
-[p x BOR4V  =  BOR40V    ]
+[p x FCMEN  =  OFF       ]
 "61
-[; ;master_main.c: 61: 
+[p x LVP  =  OFF          ]
+"65
+[p x BOR4V  =  BOR40V    ]
+"67
 [p x WRT  =  OFF         ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"73
-[; ;master_main.c: 73:     ANSELH = 0x00;
+"79
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"74
-[; ;master_main.c: 74:     ANSEL = 0x00;
+"80
 [e ( _setup ..  ]
-"75
-[; ;master_main.c: 75: 
+"81
 [e ( _Lcd_Init ..  ]
-"76
-[; ;master_main.c: 76:     TRISA = 0x00;
+"82
 [e :U 140 ]
 {
-"77
-[; ;master_main.c: 77:     TRISB = 0x00;
+"115
+[; ;master_main.c: 115:         Lcd_Clear();
 [e ( _Lcd_Clear ..  ]
-"78
-[; ;master_main.c: 78:     TRISC = 0x00;
+"116
+[; ;master_main.c: 116:         Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"79
-[; ;master_main.c: 79:     TRISD = 0x00;
+"117
+[; ;master_main.c: 117:         Lcd_Write_String("S1:");
 [e ( _Lcd_Write_String (1 :s 1C ]
-"80
-[; ;master_main.c: 80:     TRISE = 0x00;
+"118
+[; ;master_main.c: 118:         Lcd_Write_String(" ");
 [e ( _Lcd_Write_String (1 :s 2C ]
-"81
-[; ;master_main.c: 81: 
+"119
+[; ;master_main.c: 119:         Lcd_Write_String("S2:");
 [e ( _Lcd_Write_String (1 :s 3C ]
-"83
-[; ;master_main.c: 83:     PORTB = 0x00;
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"84
-[; ;master_main.c: 84:     PORTC = 0x00;
-[e ( _Decimal (1 -> -> 255 `i `uc ]
-"85
-[; ;master_main.c: 85:     PORTD = 0x00;
-[e ( _Lcd_Write_Char (1 -> _Primer_digito `uc ]
-"86
-[; ;master_main.c: 86:     PORTE = 0x00;
-[e ( _Lcd_Write_Char (1 -> _Segundo_digito `uc ]
-"87
-[; ;master_main.c: 87: 
-[e ( _Lcd_Write_Char (1 -> _Tercer_digito `uc ]
-"88
-[; ;master_main.c: 88: 
+"120
+[; ;master_main.c: 120:         Lcd_Write_String(" ");
 [e ( _Lcd_Write_String (1 :s 4C ]
-"89
-[; ;master_main.c: 89: }
-[e ( _Decimal (1 -> -> 40 `i `uc ]
-"90
+"121
+[; ;master_main.c: 121:         Lcd_Write_String("OP1");
+[e ( _Lcd_Write_String (1 :s 5C ]
+"122
+[; ;master_main.c: 122:         Lcd_Write_String(" ");
+[e ( _Lcd_Write_String (1 :s 6C ]
+"123
+[; ;master_main.c: 123:         Lcd_Write_String("OP2");
+[e ( _Lcd_Write_String (1 :s 7C ]
+"125
+[; ;master_main.c: 125:         Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"126
+[; ;master_main.c: 126:         Decimal(255);
+[e ( _Decimal (1 -> -> 255 `i `uc ]
+"127
+[; ;master_main.c: 127:         Lcd_Write_Char(Primer_digito);
 [e ( _Lcd_Write_Char (1 -> _Primer_digito `uc ]
-"91
+"128
+[; ;master_main.c: 128:         Lcd_Write_Char(Segundo_digito);
 [e ( _Lcd_Write_Char (1 -> _Segundo_digito `uc ]
-"92
+"129
+[; ;master_main.c: 129:         Lcd_Write_Char(Tercer_digito);
 [e ( _Lcd_Write_Char (1 -> _Tercer_digito `uc ]
-"93
+"130
+[; ;master_main.c: 130:         Lcd_Write_String(" ");
+[e ( _Lcd_Write_String (1 :s 8C ]
+"131
+[; ;master_main.c: 131:         Decimal(40);
+[e ( _Decimal (1 -> -> 40 `i `uc ]
+"132
+[; ;master_main.c: 132:         Lcd_Write_Char(Primer_digito);
+[e ( _Lcd_Write_Char (1 -> _Primer_digito `uc ]
+"133
+[; ;master_main.c: 133:         Lcd_Write_Char(Segundo_digito);
+[e ( _Lcd_Write_Char (1 -> _Segundo_digito `uc ]
+"134
+[; ;master_main.c: 134:         Lcd_Write_Char(Tercer_digito);
+[e ( _Lcd_Write_Char (1 -> _Tercer_digito `uc ]
+"135
+[; ;master_main.c: 135:         Lcd_Write_String(" ");
+[e ( _Lcd_Write_String (1 :s 9C ]
+"136
+[; ;master_main.c: 136:         Decimal(80);
+[e ( _Decimal (1 -> -> 80 `i `uc ]
+"137
+[; ;master_main.c: 137:         Lcd_Write_Char(Primer_digito);
+[e ( _Lcd_Write_Char (1 -> _Primer_digito `uc ]
+"138
+[; ;master_main.c: 138:         Lcd_Write_Char(Segundo_digito);
+[e ( _Lcd_Write_Char (1 -> _Segundo_digito `uc ]
+"139
+[; ;master_main.c: 139:         Lcd_Write_Char(Tercer_digito);
+[e ( _Lcd_Write_Char (1 -> _Tercer_digito `uc ]
+"140
+[; ;master_main.c: 140:         Lcd_Write_String(" ");
+[e ( _Lcd_Write_String (1 :s 10C ]
+"141
+[; ;master_main.c: 141:         Decimal(10);
+[e ( _Decimal (1 -> -> 10 `i `uc ]
+"142
+[; ;master_main.c: 142:         Lcd_Write_Char(Primer_digito);
+[e ( _Lcd_Write_Char (1 -> _Primer_digito `uc ]
+"143
+[; ;master_main.c: 143:         Lcd_Write_Char(Segundo_digito);
+[e ( _Lcd_Write_Char (1 -> _Segundo_digito `uc ]
+"144
+[; ;master_main.c: 144:         Lcd_Write_Char(Tercer_digito);
+[e ( _Lcd_Write_Char (1 -> _Tercer_digito `uc ]
+"145
+[; ;master_main.c: 145:         _delay((unsigned long)((2000)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"95
+"147
+[; ;master_main.c: 147:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"96
+"148
+[; ;master_main.c: 148:     return;
 [e $UE 138  ]
-"97
+"149
+[; ;master_main.c: 149: }
 [e :UE 138 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"102
+"154
+[; ;master_main.c: 154: void __attribute__((picinterrupt((""))))isr(void){
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"103
+"155
+[; ;master_main.c: 155:     (INTCONbits.GIE = 0);
 [e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-"104
+"156
+[; ;master_main.c: 156:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"105
+"157
+[; ;master_main.c: 157: }
 [e :UE 142 ]
 }
-"110
+"162
+[; ;master_main.c: 162: void Decimal(uint8_t variable){
 [v _Decimal `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Decimal ]
 [v _variable `uc ~T0 @X0 1 r1 ]
 [f ]
-"111
+"163
+[; ;master_main.c: 163:     uint8_t valor;
 [v _valor `uc ~T0 @X0 1 a ]
-"112
+"164
+[; ;master_main.c: 164:     valor = variable;
 [e = _valor _variable ]
-"113
+"165
+[; ;master_main.c: 165:     Primer_digito = (valor/100) ;
 [e = _Primer_digito -> / -> _valor `i -> 100 `i `uc ]
-"114
+"166
+[; ;master_main.c: 166:     valor = (valor - (Primer_digito*100));
 [e = _valor -> - -> _valor `i * -> _Primer_digito `i -> 100 `i `uc ]
-"115
+"167
+[; ;master_main.c: 167:     Segundo_digito = (valor/10);
 [e = _Segundo_digito -> / -> _valor `i -> 10 `i `uc ]
-"116
+"168
+[; ;master_main.c: 168:     valor = (valor - (Segundo_digito*10));
 [e = _valor -> - -> _valor `i * -> _Segundo_digito `i -> 10 `i `uc ]
-"117
+"169
+[; ;master_main.c: 169:     Tercer_digito = valor;
 [e = _Tercer_digito _valor ]
-"119
+"171
+[; ;master_main.c: 171:     Primer_digito = Primer_digito + 48;
 [e = _Primer_digito -> + -> _Primer_digito `i -> 48 `i `uc ]
-"120
+"172
+[; ;master_main.c: 172:     Segundo_digito = Segundo_digito + 48;
 [e = _Segundo_digito -> + -> _Segundo_digito `i -> 48 `i `uc ]
-"121
+"173
+[; ;master_main.c: 173:     Tercer_digito = Tercer_digito + 48;
 [e = _Tercer_digito -> + -> _Tercer_digito `i -> 48 `i `uc ]
-"123
+"175
+[; ;master_main.c: 175: }
 [e :UE 143 ]
 }
-"128
+"180
+[; ;master_main.c: 180: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"130
+"182
+[; ;master_main.c: 182:     OSCCONbits.IRCF2 = 1;
 [e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"131
+"183
+[; ;master_main.c: 183:     OSCCONbits.IRCF1 = 1;
 [e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"132
+"184
+[; ;master_main.c: 184:     OSCCONbits.IRCF0 = 1;
 [e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
-"133
+"185
+[; ;master_main.c: 185:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"136
+"188
+[; ;master_main.c: 188:     ANSELH = 0x00;
 [e = _ANSELH -> -> 0 `i `uc ]
-"137
+"189
+[; ;master_main.c: 189:     ANSEL = 0x00;
 [e = _ANSEL -> -> 0 `i `uc ]
-"139
+"191
+[; ;master_main.c: 191:     TRISA = 0x00;
 [e = _TRISA -> -> 0 `i `uc ]
-"140
+"192
+[; ;master_main.c: 192:     TRISB = 0x00;
 [e = _TRISB -> -> 0 `i `uc ]
-"141
-[e = _TRISC -> -> 0 `i `uc ]
-"142
+"193
+[; ;master_main.c: 193:     TRISC = 0x80;
+[e = _TRISC -> -> 128 `i `uc ]
+"194
+[; ;master_main.c: 194:     TRISD = 0x00;
 [e = _TRISD -> -> 0 `i `uc ]
-"143
+"195
+[; ;master_main.c: 195:     TRISE = 0x00;
 [e = _TRISE -> -> 0 `i `uc ]
-"145
+"197
+[; ;master_main.c: 197:     PORTA = 0x00;
 [e = _PORTA -> -> 0 `i `uc ]
-"146
+"198
+[; ;master_main.c: 198:     PORTB = 0x00;
 [e = _PORTB -> -> 0 `i `uc ]
-"147
+"199
+[; ;master_main.c: 199:     PORTC = 0x00;
 [e = _PORTC -> -> 0 `i `uc ]
-"148
+"200
+[; ;master_main.c: 200:     PORTD = 0x00;
 [e = _PORTD -> -> 0 `i `uc ]
-"149
+"201
+[; ;master_main.c: 201:     PORTE = 0x00;
 [e = _PORTE -> -> 0 `i `uc ]
-"152
+"204
+[; ;master_main.c: 204: }
 [e :UE 144 ]
 }
 [a 3C 83 50 58 0 ]
 [a 1C 83 49 58 0 ]
-[a 2C 32 32 0 ]
-[a 4C 32 32 0 ]
+[a 7C 79 80 50 0 ]
+[a 5C 79 80 49 0 ]
+[a 2C 32 0 ]
+[a 4C 32 0 ]
+[a 6C 32 0 ]
+[a 8C 32 0 ]
+[a 9C 32 0 ]
+[a 10C 32 0 ]
