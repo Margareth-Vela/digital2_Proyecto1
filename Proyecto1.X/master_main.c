@@ -82,32 +82,44 @@ void main(void) {
     while(1){  
         /*
           I2C_Master_Start();         //Se inicializa la comunicacion I2C
-        I2C_Master_Write(0x71);     //Direccion de lectura del primer esclavo
+        I2C_Master_Write(0x51);     //Direccion de lectura del primer esclavo
         slave1 = I2C_Master_Read(0); //Se agrega el valor del potenciometro
         I2C_Master_Stop();          //Termina la comunicacion 
         __delay_ms(200);
         
         I2C_Master_Start();         //Se inicializa la comunicacion I2C
-        I2C_Master_Write(0x81);     //Direccion de lectura del segundo esclavo
+        I2C_Master_Write(0x31);     //Direccion de lectura del segundo esclavo
         slave2 = I2C_Master_Read(0); //Se agrega el valor del contador
         I2C_Master_Stop();          //Termina la comunicacion 
         __delay_ms(200);
         
         I2C_Master_Start();         //Se inicializa la comunicacion I2C
-        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
-        I2C_Master_Write(0xEE);     //Configuracion del sensor
+        I2C_Master_Write(0x70);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xBE);     //Configuracion del sensor
         I2C_Master_Stop();          //Termina la comunicacion 
         __delay_ms(200);
         
         I2C_Master_Start();         //Se inicializa la comunicacion I2C
-        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
-        I2C_Master_Write(0xAA);     //Lee el valor del sensor
+        I2C_Master_Write(0x70);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xAC);     //Lee el valor del sensor
         I2C_Master_Stop();          //Termina la comunicacion
         __delay_ms(200);
         
         I2C_Master_Start();         //Se inicializa la comunicacion I2C
-        I2C_Master_Write(0x91);     //Direccion de lectura del sensor I2C
-        val_temp = I2C_Master_Read(0); //Se agrega el valor del sensor
+        I2C_Master_Write(0x71);     //Direccion de lectura del sensor I2C
+        sensor1 = I2C_Master_Read(0); //Se agrega el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x71);     //Direccion de lectura del sensor I2C
+        sensor1 = I2C_Master_Read(0); //Se agrega el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x71);     //Direccion de lectura del sensor I2C
+        sensor1 = I2C_Master_Read(0); //Se agrega el valor del sensor
         I2C_Master_Stop();          //Termina la comunicacion
         __delay_ms(200);
         */
